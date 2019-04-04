@@ -193,11 +193,12 @@ function main() {
   SLL.insertAfter('Hotdog', 'Helo');
   SLL.insertAt('Kat', 3, SLL);
   SLL.remove('Tauhida');
-  display(SLL);
-  size(SLL);
-  isEmpty(SLL);
-  findPrev(SLL, 'Apollo');
-  findLast(SLL);
+  // display(SLL);
+  // size(SLL);
+  // isEmpty(SLL);
+  // findPrev(SLL, 'Apollo');
+  // findLast(SLL);
+  reverse(SLL); 
 } 
 
 main(); 
@@ -207,4 +208,22 @@ The mystery program just traverses through the list.
 It does not return anything.
 Time complexity: O(n^2)
 */
+
+//At last node change the pointer to head
+//Every other step, change next to previous
+
+function reverse (list){
+  let current = list.head; 
+  let previous = null;
+  let next = null; 
+
+  while (current !== null){
+    next = current.next;
+    current.next = previous;
+    previous = current; 
+    current = next; 
+  }
+  list.head = previous;
+  display(list); 
+}
 
