@@ -68,7 +68,7 @@ class LinkedList {
   }
 
 
-  insertLast(item) {
+  insertLast(item, next=null) {
     if (this.head === null) {
       this.insertFirst(item);
     }
@@ -77,7 +77,7 @@ class LinkedList {
       while (tempNode.next !== null) {
         tempNode = tempNode.next; 
       }
-      tempNode.next = new _Node(item, null); 
+      tempNode.next = new _Node(item, next); 
     }
   }
 
@@ -192,16 +192,18 @@ function main() {
   SLL.insertBefore('Athena', 'Boomer'); 
   SLL.insertAfter('Hotdog', 'Helo');
   SLL.insertAt('Kat', 3, SLL);
-  SLL.remove('Tauhida');
-  // display(SLL);
+  //SLL.remove('Tauhida');
+  display(SLL);
   // size(SLL);
   // isEmpty(SLL);
   // findPrev(SLL, 'Apollo');
   // findLast(SLL);
-  reverse(SLL); 
+  //reverse(SLL); 
+  //console.log(thirdFromEnd(SLL));
+  console.log(middleOfList(SLL));
 } 
 
-main(); 
+//main(); 
 
 /*4.
 The mystery program just traverses through the list.
@@ -225,5 +227,52 @@ function reverse (list){
   }
   list.head = previous;
   display(list); 
+}
+
+function thirdFromEnd(list){
+  let current = list.head;
+  while(current !== null){
+    if(current.next.next.next === null){
+      return current.value;
+    }
+    current = current.next;
+  }
+}
+
+function middleOfList(list){
+  let full = list.head;
+  let half = list.head;
+  while(full.next !== null && full.next.next !== null){
+    full = full.next.next;
+    half = half.next; 
+  }
+  return half;
+}
+
+function secondary(){
+  let list = new LinkedList;
+  list.insertFirst('Apollo');
+  list.insertFirst('Athena');
+  list.insertFirst('Clint');
+  list.insertFirst('Bill');
+  list.insertFirst('Luke');
+
+  console.log(cycle(list));
+}
+
+secondary();
+
+function cycle(list){
+  let firstPointer = list.head;
+  let secondPointer = list.head;
+  while(firstPointer !== null && secondPointer.next !== null && secondPointer !== null){
+    firstPointer = firstPointer.next;
+    secondPointer = secondPointer.next.next;
+    if(firstPointer === secondPointer){
+      console.log(true);
+      return;
+    }
+  }
+  console.log(false);
 }
 
