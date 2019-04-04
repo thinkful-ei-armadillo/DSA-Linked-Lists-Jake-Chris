@@ -17,12 +17,15 @@ class LinkedList {
   }
  
   insertBefore(item, item2) {
-    let currNode = this.head;
-
     if (!this.head){
+      console.log('no list');
       return null; 
     }
 
+    if(this.head.value === item2){
+      this.insertFirst(item);
+    }
+    let currNode = this.head;
     while(currNode.next.value !== item2){
       currNode = currNode.next;
     }
@@ -52,6 +55,18 @@ class LinkedList {
     currNode.next = new _Node(item, currNode.next); 
 
   }
+
+  insertAt(item, loc, list){
+    let current = list.head;
+    for (let i = 1; i < loc -1; i++) {
+      current = current.next;
+      if(current.next === null){
+        this.insertLast(item)
+      }
+    }
+    current.next = new _Node(item, current.next);
+  }
+
 
   insertLast(item) {
     if (this.head === null) {
@@ -106,6 +121,65 @@ class LinkedList {
   }
 }
 
+//outside class
+
+function display(sll){
+  let currNode = sll.head;
+  while(currNode !== null){
+    console.log(currNode.value);
+    currNode = currNode.next;
+  }
+}
+function size(sll){
+  let currNode = sll.head;
+  let counter = 0;
+  while(currNode !== null){
+    counter++;
+    currNode = currNode.next;
+  }
+  console.log(counter)
+}
+function isEmpty(sll) {
+  if(sll.head === null){
+    console.log('List is empty');
+  } else{
+    console.log('List is NOT empty');
+  }
+}
+
+function findPrev(sll, item) {
+  let currNode = sll.head; 
+  let prevNode = null;
+  if (!sll.head) {
+    return null; 
+  }
+
+  while (currNode.value !== item) {
+    if (currNode.next === null) {
+      return null; 
+    }
+    else {
+      prevNode = currNode;
+      currNode = currNode.next;
+    }
+  }
+  console.log(prevNode);
+  return prevNode; 
+}
+function findLast(sll) {
+  if (sll.head === null) {
+    console.log('Nothing in list');
+  }
+  else {
+    let tempNode = sll.head;
+    while (tempNode.next !== null) {
+      tempNode = tempNode.next; 
+    }
+    console.log(tempNode);
+    return tempNode;
+  }
+}
+
 function main() {
   let SLL = new LinkedList;
   SLL.insertLast('Apollo');
@@ -117,6 +191,20 @@ function main() {
   // SLL.remove('squirrel');
   SLL.insertBefore('Athena', 'Boomer'); 
   SLL.insertAfter('Hotdog', 'Helo');
+  SLL.insertAt('Kat', 3, SLL);
+  SLL.remove('Tauhida');
+  display(SLL);
+  size(SLL);
+  isEmpty(SLL);
+  findPrev(SLL, 'Apollo');
+  findLast(SLL);
 } 
 
 main(); 
+
+/*4.
+The mystery program just traverses through the list.
+It does not return anything.
+Time complexity: O(n^2)
+*/
+

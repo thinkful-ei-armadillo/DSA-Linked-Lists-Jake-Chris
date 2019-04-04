@@ -1,0 +1,13 @@
+  // SLL.insertLast('Apollo');
+  // SLL.insertLast('Boomer');
+  // SLL.insertLast('Helo');
+  // SLL.insertLast('Husker');
+  // SLL.insertLast('Starbuck');
+  // SLL.insertLast('Tauhida');
+  // // SLL.remove('squirrel');
+  // SLL.insertBefore('Athena', 'Boomer'); 
+  // SLL.insertAfter('Hotdog', 'Helo');
+  // SLL.insertAt('Kat', 3, SLL);
+  // SLL.remove('Tauhida');
+  // display(SLL);
+  // size(SLL);
