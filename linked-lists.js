@@ -16,13 +16,13 @@ class LinkedList {
     this.head = new _Node(item, this.head); 
   }
  
-  insertBefore(item, item2){
+  insertBefore(item, item2) {
     let currNode = this.head;
 
     if (!this.head){
       return null; 
     }
-    
+
     while(currNode.next.value !== item2){
       currNode = currNode.next;
     }
@@ -31,6 +31,26 @@ class LinkedList {
       return;
     }
     currNode.next = new _Node(item, currNode.next);
+  }
+
+  insertAfter(item, item2) {
+    if (!this.head) {
+      return null;
+    }
+
+    let currNode = this.head;
+
+    while((currNode !== null) && (currNode.value !== item2)){
+      currNode = currNode.next; 
+    }
+
+    if (currNode === null){
+      console.log('Item not found'); 
+      return; 
+    }
+
+    currNode.next = new _Node(item, currNode.next); 
+
   }
 
   insertLast(item) {
@@ -96,7 +116,7 @@ function main() {
   SLL.insertLast('Tauhida');
   // SLL.remove('squirrel');
   SLL.insertBefore('Athena', 'Boomer'); 
-  console.log(SLL.head.next); 
+  SLL.insertAfter('Hotdog', 'Helo');
 } 
 
 main(); 
